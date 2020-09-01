@@ -6,6 +6,7 @@ import { RolesComponent } from './roles/roles.component';
 import { LoginComponent } from './login/login.component';
 import { AddrolesComponent } from './addroles/addroles.component';
 import { TestingcomponentComponent } from './testingcomponent/testingcomponent.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes : Routes = [
@@ -14,7 +15,7 @@ const routes : Routes = [
   {path :'users' ,component:UsersComponent},
   {path :'info' ,component:RolesComponent},
   {path :'addRole' ,component:AddrolesComponent},
-  {path :'allRoles' ,component:AllrolesComponent},
+  {path :'allRoles' ,component:AllrolesComponent,canActivate :[AuthGuard]},
   {path :'testing' ,component:TestingcomponentComponent}
  
 ]

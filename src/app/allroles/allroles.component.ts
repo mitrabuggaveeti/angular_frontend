@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlldataService } from '../service/alldata.service';
 
 @Component({
   selector: 'app-allroles',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllrolesComponent implements OnInit {
 
-  constructor() { }
+  allRoles;
+  constructor(private dataService : AlldataService) { }
 
   ngOnInit(): void {
+    this.allRoles = this.dataService.getAllRolesData()
   }
+
 
 }
