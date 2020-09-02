@@ -31,7 +31,12 @@ export class AuthGuard implements CanActivate {
     //   return false
     // }
     console.log(this.authserv.loggedIn())
+    if(this.authserv.loggedIn())
     return true
+    else{
+      window.location.href = "/login"
+      return false
+    }
   }
   
   

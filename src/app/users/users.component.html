@@ -30,8 +30,8 @@
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Messages Dropdown Menu -->
-          <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
+          <li class="nav-item dropdown" >
+            <a class="nav-link" data-toggle="dropdown" href="#" (click)="signout()">
               SignOut
               <i class="fas fa-sign-out-alt"></i>
             </a>
@@ -80,8 +80,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Mail</th>
-                            <th>Password</th>
-                            <th>Role</th>
+                            <th>Roles</th>
                             <th>Edit</th>
                             <th>Delete</th>
                           </tr>
@@ -91,13 +90,7 @@
                         <td>1</td>
                          <td>{{x.name}}</td>
                          <td>{{x.email}}</td>
-                         <td id="pwd">
-                            {{x.password}}
-                            <!-- <button class="btn-blur" type="button" value="hello">
-                              <i class="fa fa-edit"></i>
-                           </button> -->
-                          </td>
-                         <td>{{x.role}}</td>
+                         <td>{{x.roles}}</td>
                          <td>
                           <button class="btn-blur" type="button" data-toggle="modal" data-target="#modal-editUser" title="Edit"  value="hello" (click)="editUser(x)">
                              <i class="fa fa-edit"></i>
@@ -144,7 +137,15 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="newUserModel.password" name="password">
-                    </div>       
+                    </div>  
+                    <div class="form-group">
+                      <label>Role</label>
+                      <select  multiple="multiple" [(ngModel)]="newUserModel.roles" name="role" (change)="onchange()" data-placeholder="Select a State" style="width: 100%;" >                            
+
+                        <option  *ngFor="let y of allRoles" [value]="y.rolename">{{y.rolename}}</option>
+                         
+                      </select>
+                    </div>     
                   </div>               
         
                     <div class="modal-footer justify-content-between">
@@ -163,7 +164,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Edit User</h4>
+                <h4 class="modal-title">Assign Role</h4>
                 <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -173,18 +174,20 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
-                      <input type="name" class="form-control" id="exampleInputName" [(ngModel)]="editUserModel.name" name="name" placeholder="Enter name">
+                      <input type="name" class="form-control" id="exampleInputName" [(ngModel)]="editUserModel.email" name="email" placeholder="Enter name">
                     </div>
                     <div class="form-group">
                       <label>Role</label>
-                      <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">                            
-                        <option>Pathalogist</option>
+                      <select  class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">                            
+                        <!-- <option>Pathalogist</option>
                         <option [selected]="bool">Lab Technician</option>
-                        <option>Admin</option>
+                        <option [selected]="bool">Admin</option>
                         <option [selected]="bool===6 ? true : false" value="xyz">Delaware</option>
                         <option>Tennessee</option>
                         <option>Texas</option>
-                        <option>Washington</option>
+                        <option>Washington</option> -->
+                        <option  *ngFor="let y of allRoles">{{y.rolename}}</option>
+                         
                       </select>
                     </div>
               

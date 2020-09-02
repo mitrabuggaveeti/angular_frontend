@@ -12,9 +12,7 @@ import { AuthGuard } from './auth.guard';
 const routes : Routes = [
   {path : '', redirectTo: 'login', pathMatch: 'full'},
   {path :'login' ,component:LoginComponent},
-  {path :'users' ,component:UsersComponent},
-  {path :'info' ,component:RolesComponent},
-  {path :'addRole' ,component:AddrolesComponent},
+  {path :'users' ,component:UsersComponent,canActivate :[AuthGuard]},
   {path :'allRoles' ,component:AllrolesComponent,canActivate :[AuthGuard]},
   {path :'testing' ,component:TestingcomponentComponent}
  

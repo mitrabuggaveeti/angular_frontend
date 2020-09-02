@@ -1,6 +1,6 @@
 export class editUser {
     constructor(
-        public name: string,
+        public email: string,
         public role: string
     ) { }
 }

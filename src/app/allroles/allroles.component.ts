@@ -1,3 +1,5 @@
+import { newRole } from './../allClasses/newRole';
+import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 import { AlldataService } from '../service/alldata.service';
 
@@ -9,11 +11,23 @@ import { AlldataService } from '../service/alldata.service';
 export class AllrolesComponent implements OnInit {
 
   allRoles;
-  constructor(private dataService : AlldataService) { }
+  newRoleModel = new newRole("","")
+  constructor(private dataService : AlldataService,private sessionStatus : DataService) { }
 
   ngOnInit(): void {
     this.allRoles = this.dataService.getAllRolesData()
   }
 
+  addNewRole(){
+
+    console.log(this.dataService.addRole(this.newRoleModel))
+    this.newRoleModel = new newRole("","")
+
+  }
+  
+  signout(){
+    this.sessionStatus.logout()
+    window.location.href = "/login"
+  }
 
 }

@@ -10,11 +10,14 @@ export class DataService {
     authYN = false
 
   loginUser(user) {
-     this.authYN = true
-    return {status: "yes"}
+     return {status: "yes"}
    /// return this.http.post<any>(this._loginUrl, user)
-  }
+   }
   loggedIn() {
-    return this.authYN    
+    return !!localStorage.getItem('status')
+  }
+
+  logout(){
+    localStorage.removeItem('status')
   }
 }

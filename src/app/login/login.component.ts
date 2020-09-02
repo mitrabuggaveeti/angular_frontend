@@ -43,16 +43,14 @@ export class LoginComponent implements OnInit {
      var obj =this.authserv.loginUser(this.userModel)
      console.log(obj)
      if(obj.status == "yes") {
-        localStorage.setItem('status','yes' );
+        localStorage.setItem('status',obj.status );
         window.location.href = "/users";
      }
      else{
       window.location.href = "/login"
      }             
-                                      
-
-    
-
   }
+
+ 
 
 }
