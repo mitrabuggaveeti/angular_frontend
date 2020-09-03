@@ -21,6 +21,9 @@ export class AllrolesComponent implements OnInit {
   addNewRole(){
 
     console.log(this.dataService.addRole(this.newRoleModel))
+  
+     var x= this.dataService.addRole(this.newRoleModel)
+      
     this.newRoleModel = new newRole("","")
 
   }

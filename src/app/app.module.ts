@@ -9,8 +9,10 @@ import { AllrolesComponent } from './allroles/allroles.component';
 import { LoginComponent } from './login/login.component';
 import { AddrolesComponent } from './addroles/addroles.component';
 import { TestingcomponentComponent } from './testingcomponent/testingcomponent.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import {AuthHeaderInterceptor} from './http-interceptor/auth-header.interceptor'
 
 @NgModule({
   declarations: [
@@ -26,9 +28,15 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule
+
   ],
-  providers: [],
+  providers: [{
+    provide : HTTP_INTERCEPTORS,
+    useClass :AuthHeaderInterceptor,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
