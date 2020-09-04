@@ -91,9 +91,9 @@
                          <td>{{x.name}}</td>
                          <td>{{x.email}}</td>
                          <td>  
-                                {{x.roles.rolename}}
+                              
                                <ng-container *ngFor="let i of x.roles" >
-                                  {{i.rolename}} <br >
+                                  {{i.role}} <br >
                                 </ng-container>
                          </td>
                          <td>
@@ -152,8 +152,8 @@
                       </select> -->
                     
                         <ng-select [items]="allRoles"
-                          bindLabel="rolename"
-                          bindValue="id"
+                          bindLabel="role"
+                          bindValue="_id"
                           [multiple]="true"
                           [(ngModel)]="newUserModel.roles" name="roles">
                         </ng-select>
@@ -177,7 +177,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Assign Role
+                <h4 class="modal-title">Edit User
                   <br/>
                   <small class="text-success">{{userEdited}}</small>
                 </h4>
@@ -193,11 +193,11 @@
                       <input type="name" class="form-control" id="exampleInputName" [(ngModel)]="editUserModel.email" name="email" placeholder="Enter name" disabled>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Name</label>
+                      <label for="exampleInputEmail1">Edit Name</label>
                       <input type="name" class="form-control" id="exampleInputName" [(ngModel)]="editUserModel.name" name="name" placeholder="Enter name">
                     </div>
                     <div class="form-group">
-                      <label>Role</label>
+                      <label>Assign New Roles</label>
                       <!-- <select   multiple="multiple" [(ngModel)]="editUserModel.roles" name="role" data-placeholder="Select a State" style="width: 100%;">                            
 
                         <option  *ngFor="let y of allRoles" selected="selected" [value]="y.id">{{y.rolename}}</option>
@@ -205,8 +205,9 @@
                       </select> -->
                         <ng-select [items]="allRoles"
                           bindLabel="rolename"
-                          bindValue="id"
+                          bindValue="_id"
                           [multiple]="true"
+                          placeholder="Select Role"
                           [(ngModel)]="editUserModel.roles" name="roles">
                         </ng-select>
                     </div>
@@ -216,7 +217,7 @@
         
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-primary" (click)="submitEditedUser()">Save changes</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Close</button>
                     </div>
                 </form>
               </div>

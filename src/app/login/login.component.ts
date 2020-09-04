@@ -41,32 +41,32 @@ export class LoginComponent implements OnInit {
     //                                   //  this._router.navigateByUrl("/users")
     //                                   })
 
+ //console.log(this.userModel)
+    // this.authserv.loginUser(this.userModel)
+    //              .subscribe((data) =>{
 
-    this.authserv.loginUser(this.userModel)
-                 .subscribe((data) =>{
-
-                   if(data.status === "yes"){
-                      localStorage.setItem('sessionToken',data.token);
-                      window.location.href = "/users";
-                    }
-                    else window.location.href = "/login";
-                 },
-                 (eror) =>{
-                  window.location.href = "/login";
-                })
+    //                if(data.status === "yes"){
+    //                   localStorage.setItem('sessionToken',data.token);
+    //                   window.location.href = "/users";
+    //                 }
+    //                // else window.location.href = "/login";
+    //              },
+    //              (eror) =>{
+    //               window.location.href = "/login";
+    //             })
 
 
 
-    // console.log(this.userModel)
-    //  var obj =this.authserv.loginUser(this.userModel)
-    //  console.log(obj)
-    //  if(obj.status == "yes") {
-    //     localStorage.setItem('status',obj.status );
-    //     window.location.href = "/users";
-    //  }
-    //  else{
-    //   window.location.href = "/login"
-    //  }             
+    console.log(this.userModel)
+     var obj =this.authserv.loginUser(this.userModel)
+     console.log(obj)
+     if(obj.status == "yes") {
+        localStorage.setItem('status',obj.status );
+        window.location.href = "/users";
+     }
+     else{
+      window.location.href = "/login"
+     }             
   }
 
  

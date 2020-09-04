@@ -21,63 +21,108 @@ export class AlldataService {
   getAllUsersData(){
     
     // this.allUsersDataUrl = ""
-     //return this.http.get<any>("jkl");
-      return [
-          {
-            name : "mitra",
-            email : "xyz@a.com",
-            password : '123',
-           // roles : ["pathalogist","role2","role3"],
-            roles : [{
-              id : 1,
-              rolename : "pathologist",
-              description : 'keyword is used to iterate through each element or object from headers'
-              },
-              {
-                id : 2,
-                rolename : "Lab tech",
-                description : 'keyword is used to iterate through each element or object from headers'
-              }]
-            },
-            {
-              name : "Sai praneeth",
-              email : "abc@a.com",
-              password : '123',
-             // roles : ["pathalogist","role2","role3"],
-              roles : [{
-                id : 3,
-                rolename : "Admin",
-                description : 'keyword is used to iterate through each element or object from headers'
-                }]
-              }
-        ]
+     return this.http.get<any>("http://127.0.0.1:5000/info");
+      // return [
+      //     {
+      //       name : "mitra",
+      //       email : "xyz@a.com",
+      //       password : '123',
+      //      // roles : ["pathalogist","role2","role3"],
+      //       roles : [{
+      //         id : 1,
+      //         rolename : "pathologist",
+      //         description : 'keyword is used to iterate through each element or object from headers'
+      //         },
+      //         {
+      //           id : 3,
+      //           rolename : "Lab tech",
+      //           description : 'keyword is used to iterate through each element or object from headers'
+      //         }]
+      //       },
+      //       {
+      //         name : "Sai praneeth",
+      //         email : "abc@a.com",
+      //         password : '123',
+      //        // roles : ["pathalogist","role2","role3"],
+      //         roles : [{
+      //           id : 2,
+      //           rolename : "Admin",
+      //           description : 'keyword is used to iterate through each element or object from headers'
+      //           }]
+      //         }
+      //   ]
+
+
+      // return [
+      //       {
+      //         name : "mitra",
+      //         email : "xyz@a.com",
+      //         password : '123',
+      //       // roles : ["pathalogist","role2","role3"],
+      //         roles : [1 , 2 ,3]
+      //           },
+      //       {
+      //         name : "mitra",
+      //         email : "xyz@a.com",
+      //         password : '123',
+      //        // roles : ["pathalogist","role2","role3"],
+      //         roles : [1 , 2 ,3]
+      //           },
+
+      // ]
     }
 
     getAllRoles(){
 
-      //return this.http.get<any>("jkl");
-      return [
-                {
-                  id : 1,
-                  rolename : "pathologist",
-                  description : 'keyword is used to iterate through each element or object from headers' 
-                },
-                {
-                  id : 2,
-                  rolename : "Admin",
-                  description : 'keyword is used to iterate through each element or object from headers' 
-                },
-                {
-                  id : 3,
-                  rolename : "Lab tech",
-                  description : 'keyword is used to iterate through each element or object from headers' 
-                },
-                {
-                  id : 4,
-                  rolename : "Role4",
-                  description : 'keyword is used to iterate through each element or object from headers' 
-                }
-              ]
+      return this.http.get<any>("http://127.0.0.1:5000/infoRoles");
+      // return [
+      //           {
+      //             id : 1,
+      //             rolename : "pathologist",
+      //             description : 'keyword is used to iterate through each element or object from headers' 
+      //           },
+      //           {
+      //             id : 2,
+      //             rolename : "Admin",
+      //             description : 'keyword is used to iterate through each element or object from headers' 
+      //           },
+      //           {
+      //             id : 3,
+      //             rolename : "Lab tech",
+      //             description : 'keyword is used to iterate through each element or object from headers' 
+      //           },
+      //           {
+      //             id : 4,
+      //             rolename : "Role4",
+      //             description : 'keyword is used to iterate through each element or object from headers' 
+      //           }
+      //         ]
+      // return [
+      //   {
+      //      _id : "abc",
+      //     id : 1,
+      //     rolename : "pathologist",
+      //     description : 'keyword is used to iterate through each element or object from headers' 
+      //   },
+      //   {
+      //     _id : "def",
+      //     id : 2,
+      //     rolename : "Admin",
+      //     description : 'keyword is used to iterate through each element or object from headers' 
+      //   },
+      //   {
+      //     _id : "ghi",
+      //     id : 3,
+      //     rolename : "Lab tech",
+      //     description : 'keyword is used to iterate through each element or object from headers' 
+      //   },
+      //   {
+      //     _id : "jkl",
+      //     id : 4,
+      //     rolename : "Role4",
+      //     description : 'keyword is used to iterate through each element or object from headers' 
+      //   }
+      // ]
     }
 
     getAllRolesData(){

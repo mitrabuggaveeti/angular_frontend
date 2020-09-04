@@ -5,6 +5,7 @@ import { AlldataService } from '../service/alldata.service';
 import {newUser} from '../allClasses/newUser'
 import { DataService } from '../data.service';
 import {NgSelectModule, NgOption} from '@ng-select/ng-select';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,7 @@ export class UsersComponent implements OnInit {
   allRoles ;
   selectedRole;
   bool;
-  rolesarray : [];
+  rolesarray : string[] = [];
   newUserModel = new newUser("","","",[])
   editUserModel = new editUser("","",[])
   deleteUserModel = new deleteUser("")
@@ -26,20 +27,81 @@ export class UsersComponent implements OnInit {
   userEdited : string = ""
   userDeleted : string = ""
   cities2;
+  temp ;
    selectedCityIds: string[];
-  constructor(private dataService : AlldataService,private sessionStatus:DataService) {
+  constructor(private dataService : AlldataService,private sessionStatus:DataService,private http:HttpClient) {
     console.log(JSON.stringify(this.editUserModel) +" fsdfgbg")
    }
 
   ngOnInit(): void {
    
-    //if(token!=="mitra")
-   // window.location.href = "/login";
-    // this.dataService.getAllUsersData().subscribe((data) =>{
-    //     this.allUsers = JSON.parse(data)
-    // })
-     this.allUsers = this.dataService.getAllUsersData()
-     this.allRoles = this.dataService.getAllRoles()
+  
+      this.dataService.getAllUsersData()
+           .subscribe((data) =>{
+          
+             this.allUsers = data
+
+             for(let x=0;x<this.allUsers.length;x++)
+              {
+
+                        var obj = {
+                          roles : this.allUsers[x].role
+                    };//console.log(this.allUsers[x])
+                        this.http.post<any>("http://127.0.0.1:5000/infoR",obj)
+                                .subscribe((data)=>{
+                                  //console.log(data)
+                                    this.allUsers[x].role = data
+                                  // x.role=data
+                                  //  console.log(x.role)
+                                })
+                    // console.log(this.allUsers)
+                    // this.allUsers[x].role=[]
+
+                }
+             
+           })
+
+           this.dataService.getAllRoles()
+                    .subscribe((data)=>{
+                      this.allRoles = data
+                    })
+
+     
+    // console.log(this.allUsers)
+    //  this.temp =  [ 
+    //                 { 
+    //                   _id : "def",
+    //                   id : 2,
+    //                 rolename : "Admin",
+    //                 description : 'keyword is used to iterate through each element or object from headers'
+    //                 },
+    //                 { 
+    //                   _id : "ghi",
+    //                   id : 3,
+    //                   rolename : "Labtech",
+    //                   description : 'keyword is used to iterate through each element or object from headers'
+    //                   },
+
+    //              ]
+    
+      
+          // for(var x of this.allUsers){
+               
+          //   // this.http.post<any>("",x.roles)
+          //   //          .subscribe((data)=>{
+          //   //              x.roles = this.temp
+          //   //          })
+          //   // console.log(x.roles)
+          //   x.roles = this.temp
+          //    //console.log(x)
+          // }
+
+
+       //   console.log(this.allUsers)
+
+
+      
+    // this.allRoles = this.dataService.getAllRoles()
 
 
     //  this.dataService.getAllUsersData()
@@ -88,11 +150,13 @@ export class UsersComponent implements OnInit {
   }
   
   editUser(evt){
-     console.log(evt)
-
-     this.rolesarray = evt.roles.map(x => x.rolename)
-     console.log("abc "+this.rolesarray)
-    this.editUserModel = new editUser(evt.email,evt.name,evt.roles);
+     console.log(evt.roles)
+       this.rolesarray = [] 
+     for(var i=0;i<evt.roles.length;i++){
+       this.rolesarray.push(evt.roles[i]._id)
+      }
+      console.log("roles array "+this.rolesarray)
+     this.editUserModel = new editUser(evt.email,evt.name,this.rolesarray);
     console.log(this.editUserModel)
      
   }
@@ -132,14 +196,24 @@ export class UsersComponent implements OnInit {
 
  
   onClose(){
+    this.editUserModel = new editUser("","",[])
     this.isUserAdded = ""
     this.userDeleted = ""
     this.userEdited = " "
   }
 
   signout(){
+
+    // this.sessionStatus.logout()
+    //      .subscribe((data) =>{
+    //         window.location.href = "/login"
+    //      },
+    //       (error) =>{
+
+    //       }
+    //      )
     this.sessionStatus.logout()
-    window.location.href = "/login"
+   
   }
 
 }

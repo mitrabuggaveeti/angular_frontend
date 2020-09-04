@@ -14,11 +14,15 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log("in interceptor")
+  
+    if(localStorage.getItem('sessionToken')){
 
-    const authReq = request.clone({
+     const authReq = request.clone({
         setHeaders: {Authorization : localStorage.getItem('sessionToken')}
-    })
-    console.log(authReq)
-    return next.handle(authReq);
+     })
+     return next.handle(authReq)
+     }
+    
+    return next.handle(request);
   }
 }
