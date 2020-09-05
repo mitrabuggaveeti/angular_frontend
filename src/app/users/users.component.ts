@@ -150,12 +150,13 @@ export class UsersComponent implements OnInit {
   }
   
   editUser(evt){
-     console.log(evt.roles)
+     console.log(evt.role)
        this.rolesarray = [] 
-     for(var i=0;i<evt.roles.length;i++){
-       this.rolesarray.push(evt.roles[i]._id)
+     for(var i=0;i<evt.role.length;i++){
+       this.rolesarray.push(evt.role[i]._id.$oid)
       }
       console.log("roles array "+this.rolesarray)
+     //this.editUserModel = new editUser(evt.email,evt.name,this.rolesarray);
      this.editUserModel = new editUser(evt.email,evt.name,this.rolesarray);
     console.log(this.editUserModel)
      
@@ -168,14 +169,36 @@ export class UsersComponent implements OnInit {
   submitEditedUser(){
      
     console.log(this.editUserModel)
+    var xyz = []
+
+    for(let a=0;a<this.editUserModel.roles.length;a++){
+            xyz.push({
+               
+                 $oid : this.editUserModel.roles[a]
+               
+            })
+    }
+
+    //console.log(xyz)
+
+   var newobj = {
+     email : this.editUserModel.email,
+     name : this.editUserModel.name,
+     roles : xyz
+
+   }
+    
+   console.log(newobj)
 
     //this.dataService.
-    this.dataService.addEditedUser(this.editUserModel)
+    this.dataService.addEditedUser(newobj)
                      .subscribe(
                       (data) => {
                           this.userEdited = "Successfully Edited"
                       },
                       (error) =>{
+                        console.log(error);
+                        
                           this.userEdited = "Error while Editing" 
                       }
                       )

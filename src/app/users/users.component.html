@@ -92,7 +92,7 @@
                          <td>{{x.email}}</td>
                          <td>  
                               
-                               <ng-container *ngFor="let i of x.roles" >
+                               <ng-container *ngFor="let i of x.role" >
                                   {{i.role}} <br >
                                 </ng-container>
                          </td>
@@ -204,8 +204,8 @@
                          
                       </select> -->
                         <ng-select [items]="allRoles"
-                          bindLabel="rolename"
-                          bindValue="_id"
+                          bindLabel="role"
+                          bindValue="_id.$oid"
                           [multiple]="true"
                           placeholder="Select Role"
                           [(ngModel)]="editUserModel.roles" name="roles">

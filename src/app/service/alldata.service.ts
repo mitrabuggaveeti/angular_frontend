@@ -150,11 +150,11 @@ export class AlldataService {
     }
 
     addNewUser(user){
-       return this.http.post<any>("jkl",user);
+       return this.http.post<any>("http://127.0.0.1:5000/add",user);
     }
     
     addEditedUser(editeduser){
-         return this.http.post<any>("",editeduser)
+         return this.http.post<any>("http://127.0.0.1:5000/updateUser",editeduser)
     }
     
     deleteUser(delUser){

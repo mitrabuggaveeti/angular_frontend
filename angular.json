@@ -33,7 +33,6 @@
               "node_modules/admin-lte/plugins/fontawesome-free/css/fontawesome.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/admin-lte/docs_html/assets/css/adminlte.css"
-     
             ],
             "scripts": [
               "node_modules/admin-lte/plugins/jquery/jquery.min.js",
@@ -147,6 +146,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "adminlte-project"
+    }
+  },
+  "defaultProject": "adminlte-project",
+  "cli": {
+    "analytics": false
+  }
 }
